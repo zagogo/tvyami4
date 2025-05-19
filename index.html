@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' ry='20' fill='black'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='white'>📺</text></svg>">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="TV Yami offers free streaming of South African, American TV Shows, and Movies. Watch anytime, anywhere." />
+  <meta name="keywords" content="TV Yami, South African TV, Skeem Saam, Ithonga, Genesis, Xrepo, Movies, Free Streaming, American TV Shows" />
+  <meta name="google-site-verification" content="SxXcwQdqUlWLjt456JwV8YfWjovUXvFl_CIgtUGweD0" />
+  <title>TV Yami – Free SA & US TV Shows + Movies</title>
+
+  <!-- Ads with proper async loading to prevent blocking -->
+  <script async src='//pl26630947.profitableratecpm.com/91/50/ce/9150ce4b254464961b06ccaa256200ea.js'></script>
+  <script async src='//pl26640661.profitableratecpm.com/32/da/24/32da24bbb349b1c40dc2190cabe48290.js'></script>
+
+  <style>
+    :root {
+      --primary-color: #FF4500;
+      --secondary-color: #FFD700;
+      --bg-color: #000;
+      --text-color: #fff;
+      --card-bg: #111;
+      --modal-bg: rgba(0, 0, 0, 0.9);
+    }
+
+    [data-theme="light"] {
+      --primary-color: #E74C3C;
+      --secondary-color: #F39C12;
+      --bg-color: #f5f5f5;
+      --text-color: #333;
+      --card-bg: #fff;
+      --modal-bg: rgba(255, 255, 255, 0.95);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 30px 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: var(--secondary-color);
+      text-shadow: 2px 2px 5px #000;
+      margin-bottom: 10px;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    /* Search Bar */
+    .search-container {
+      max-width: 600px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: 2px solid var(--primary-color);
+      background: var(--card-bg);
+      color: var(--text-color);
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 7px 15px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .search-results {
+      position: absolute;
+      width: 100%;
+      max-height: 300px;
+      overflow-y: auto;
+      background: var(--card-bg);
+      border: 1px solid var(--primary-color);
+      border-radius: 0 0 10px 10px;
+      z-index: 100;
+      display: none;
+      text-align: left;
+    }
+
+    .search-result-item {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #333;
+    }
+
+    .search-result-item:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0 30px;
+      gap: 10px;
+    }
+
+    .category, .subcategory {
+      padding: 10px 18px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .category {
+      background: var(--bg-color);
+      color: var(--primary-color);
+      box-shadow: 0 0 10px var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .category:hover {
+      background: var(--primary-color);
+      color: #000;
+    }
+
+    .subcategory {
+      background: var(--card-bg);
+      color: var(--secondary-color);
+      box-shadow: 0 0 10px var(--secondary-color);
+      border: 1px solid var(--secondary-color);
+    }
+
+    .subcategory:hover {
+      background: var(--secondary-color);
+      color: #111;
+    }
+
+    .watch-now {
+      margin: 25px 0;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 15px var(--primary-color);
+      transition: background 0.3s ease;
+    }
+
+    .watch-now:hover {
+      background: #e03e00;
+    }
+
+    .video-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+
+    .video-container {
+      flex: 1 1 450px;
+      max-width: 480px;
+      cursor: pointer;
+    }
+
+    .video-title {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--secondary-color);
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 40px auto;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #000;
+      background-color: var(--card-bg);
+    }
+
+    .section h2 {
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+      font-size: 28px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .links a {
+      display: block;
+      padding: 12px 20px;
+      background: #222;
+      color: var(--primary-color);
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+      background: var(--bg-color);
+    }
+
+    .links a:hover {
+      background: var(--secondary-color);
+      color: #000;
+    }
+
+    footer {
+      margin-top: 60px;
+      background: rgba(0,0,0,0.85);
+      padding: 25px 20px;
+      color: var(--text-color);
+      font-size: 15px;
+      line-height: 1.6;
+      border-top: 1px solid #444;
+      background: var(--card-bg);
+    }
+
+    footer strong {
+      color: var(--primary-color);
+    }
+
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 768px) {
+      .links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    /* Thumbnail styles */
+    .thumbnail-container {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #444;
+      transition: transform 0.3s;
+    }
+    
+    .thumbnail-container:hover {
+      transform: scale(1.02);
+    }
+    
+    .thumbnail-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background-color: rgba(255, 69, 0, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .play-button:hover {
+      background-color: rgba(255, 69, 0, 1);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .play-button::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 25px solid white;
+      margin-left: 5px;
+    }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--modal-bg);
+      overflow: auto;
+    }
+    
+    .modal-content {
+      position: relative;
+      margin: 5% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+    }
+    
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: var(--primary-color);
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    
+    .close:hover {
+      color: var(--secondary-color);
+    }
+    
+    .modal-video {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+    }
+    
+    /* Carousel styles */
+    .carousel {
+      position: relative;
+      max-width: 1000px;
+      margin: 30px auto;
+      overflow: hidden;
+    }
+    
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .carousel-item {
+      min-width: 100%;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+    
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 69, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 20px;
+      z-index: 10;
+    }
+    
+    .carousel-control.prev {
+      left: 10px;
+    }
+    
+    .carousel-control.next {
+      right: 10px;
+    }
+    
+    .carousel-control:hover {
+      background-color: rgba(255, 69, 0, 1);
+    }
+    
+    /* Content preview styles */
+    .content-preview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+    
+    .preview-item {
+      width: 180px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    
+    .preview-item:hover {
+      transform: scale(1.05);
+    }
+    
+    .preview-thumbnail {
+      width: 100%;
+      height: 250px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #444;
+    }
+    
+    .preview-title {
+      margin-top: 8px;
+      font-size: 16px;
+      color: var(--secondary-color);
+    }
+
+    /* Social Ad Styling */
+    .social-ad {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
+      border: 1px solid var(--primary-color);
+    }
+
+    /* Next Video Button */
+    .next-video-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .next-video-btn:hover {
+      background: #e03e00;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin: 20px auto;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Ad container styling */
+    .ad-container {
+      margin: 20px 0;
+      min-height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      border-radius: 5px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle">🌓</button>
+
+  <!-- Top Ad Position with fallback -->
+  <div class="ad-container">
+    <script async data-cfasync="false" src="//pl26633526.profitableratecpm.com/9e1b86bea911dbaea20ee820fbf00236/invoke.js"></script>
+    <div id="container-9e1b86bea911dbaea20ee820fbf00236"></div>
+    <div class="ad-fallback" style="display:none;">
+      <p>Advertisement</p>
+    </div>
+  </div>
+
+  <h1>TV Yami</h1>
+
+  <!-- Search Bar with Results Dropdown -->
+  <div class="search-container">
+    <input type="text" class="search-bar" placeholder="Search movies, TV shows..." id="searchInput" autocomplete="off">
+    <button class="search-btn" onclick="searchContent()">Search</button>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <div class="categories">
+    <a class="category" href="https://tvyami.blogspot.com/search/label/movies?&max-results=6" target="_blank">Movies</a>
+    <a class="category" href="https://mzansimovie.blogspot.com/search/label/SERIES?&max-results=6" target="_blank">Series</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/South%20African%20TV%20Shows?&max-results=6" target="_blank">South African TV Shows</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/xrepo?&max-results=6" target="_blank">Xrepo</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/skeemsaam?&max-results=6" target="_blank">Skeem Saam</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/ithonga?&max-results=6" target="_blank">Ithonga</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/genesis?&max-results=6" target="_blank">Genesis</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/American%20TV%20Shows?&max-results=6" target="_blank">American TV Shows</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/Documentaries?&max-results=6" target="_blank">Documentaries</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/Comedy?&max-results=6" target="_blank">Comedy</a>
+  </div>
+
+  <button class="watch-now" onclick="window.open('https://tvyami.blogspot.com/', '_blank')">🎬 Watch Now</button>
+
+  <!-- Google Drive Videos Section (Now First) -->
+  <div class="section">
+    <h2>Featured Movies</h2>
+    <div class="video-section">
+      <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1aXNXRaS0bn5V2_wL-IRUoQM8MY_QiAWK/preview', 'A United Kingdom (2017)')">
+        <div class="video-title">A United Kingdom (2017)</div>
+        <div class="thumbnail-container">
+          <img src="https://m.media-amazon.com/images/M/MV5BMTQ2NjE4NDE2NV5BMl5BanBnXkFtZTgwOTcwNDk5MTI@._V1_FMjpg_UX1000_.jpg" alt="A United Kingdom thumbnail">
+          <div class="play-button"></div>
+        </div>
+      </div>
+      <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1nrvPvVYbPFOnM6E1US3aQgHtq-PONRHY/preview', 'Air (2023)')">
+        <div class="video-title">Air (2023)</div>
+        <div class="thumbnail-container">
+          <img src="https://m.media-amazon.com/images/M/MV5BOWE1YzQ4YTAtODJlYS00YzJkLTk5NjktOWIyYzFkMjYzMjE2XkEyXkFqcGdeQXVyMTUzOTcyODA5._V1_FMjpg_UX1000_.jpg" alt="Air thumbnail">
+          <div class="play-button"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mid Ad Position -->
+  <div class="social-ad">
+    <div class="ad-container">
+      <script type="text/javascript" src="//www.highperformanceformat.com/9fe4ec7851720a430fcc8b0183179c46/invoke.js"></script>
+      <div id="container-9fe4ec7851720a430fcc8b0183179c46"></div>
+    </div>
+  </div>
+
+  <!-- YouTube Videos Carousel -->
+  <div class="section">
+    <h2>Popular Videos</h2>
+    <div class="carousel">
+      <button class="carousel-control prev" onclick="moveCarousel(-1)">❮</button>
+      <div class="carousel-inner">
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/ZUG3jxb9bFM?autoplay=1', 'Killer Body (2023) Full Movie')">
+            <div class="video-title">Killer Body (2023) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/ZUG3jxb9bFM/maxresdefault.jpg" alt="Killer Body thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/XiImoJwpfJ8?autoplay=1', 'The Perfect Find (2023) Full Movie')">
+            <div class="video-title">The Perfect Find (2023) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/XiImoJwpfJ8/maxresdefault.jpg" alt="The Perfect Find thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/LOwyDHQzLQs?autoplay=1', 'The Tutor (2023) Full Movie')">
+            <div class="video-title">The Tutor (2023) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/LOwyDHQzLQs/maxresdefault.jpg" alt="The Tutor thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/L3dIFNw7XVI?autoplay=1', 'The Locksmith (2023) Full Movie')">
+            <div class="video-title">The Locksmith (2023) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/L3dIFNw7XVI/maxresdefault.jpg" alt="The Locksmith thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/GrNNglupZPA?autoplay=1', 'The Ritual Killer (2023) Full Movie')">
+            <div class="video-title">The Ritual Killer (2023) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/GrNNglupZPA/maxresdefault.jpg" alt="The Ritual Killer thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/wkqKnmWbzLw?autoplay=1', 'Beautiful Disaster (2023) Full Movie')">
+            <div class="video-title">Beautiful Disaster (2023) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/wkqKnmWbzLw/maxresdefault.jpg" alt="Beautiful Disaster thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control next" onclick="moveCarousel(1)">❯</button>
+    </div>
+  </div>
+
+  <!-- More Google Drive Videos -->
+  <div class="section">
+    <h2>Premium Movies</h2>
+    <div class="video-section">
+      <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1DYLjdSdqLmFj9vlgjJXldQ0aPXskTFyE/preview', 'American Fiction (2023)')">
+        <div class="video-title">American Fiction (2023)</div>
+        <div class="thumbnail-container">
+          <img src="https://m.media-amazon.com/images/M/MV5BZjNlNGU0NjAtNjM5NC00ZmY3LWE3NTItYjE0YzQyMGM2OTNhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg" alt="American Fiction thumbnail">
+          <div class="play-button"></div>
+        </div>
+      </div>
+      <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1OXJDBvhdJ6WjwVVelQ16k2prXKxRrQrn/preview', 'Amsterdam (2023)')">
+        <div class="video-title">Amsterdam (2023)</div>
+        <div class="thumbnail-container">
+          <img src="https://m.media-amazon.com/images/M/MV5BNDQwNzE0ZTItYmZjMC00NjI3LWFlNzctNTExZDY2NWE0Zjc0XkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_FMjpg_UX1000_.jpg" alt="Amsterdam thumbnail">
+          <div class="play-button"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Previews -->
+  <div class="section">
+    <h2>New Releases</h2>
+    <div class="content-preview">
+      <div class="preview-item" onclick="openModal('https://drive.google.com/file/d/1sHWOEhixlQ6Q3cMAQMff8E3TL-Jm9lDk/preview', 'Dear Basketball')">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTU1NzY5NTY0MV5BMl5BanBnXkFtZTgwMjM2NzM5NDM@._V1_FMjpg_UX1000_.jpg" class="preview-thumbnail" alt="Dear Basketball">
+        <div class="preview-title">Dear Basketball</div>
+      </div>
+      <div class="preview-item" onclick="openModal('https://drive.google.com/file/d/1KBaW16hSXnKrs6OCHssXK5m1RyD2FE0K/preview', 'Dangerous Lies')">
+        <img src="https://m.media-amazon.com/images/M/MV5BNzU0YjI0OGItYTlkYi00YTE5LTk4NWMtM2I3NDQ1YzQyYzI2XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg" class="preview-thumbnail" alt="Dangerous Lies">
+        <div class="preview-title">Dangerous Lies</div>
+      </div>
+      <div class="preview-item" onclick="openModal('https://www.youtube.com/embed/ZUG3jxb9bFM?autoplay=1', 'Killer Body')">
+        <img src="https://i.ytimg.com/vi/ZUG3jxb9bFM/maxresdefault.jpg" class="preview-thumbnail" alt="Killer Body">
+        <div class="preview-title">Killer Body</div>
+      </div>
+      <div class="preview-item" onclick="openModal('https://www.youtube.com/embed/XiImoJwpfJ8?autoplay=1', 'The Perfect Find')">
+        <img src="https://i.ytimg.com/vi/XiImoJwpfJ8/maxresdefault.jpg" class="preview-thumbnail" alt="The Perfect Find">
+        <div class="preview-title">The Perfect Find</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why TV Yami?</h2>
+    <p>TV Yami brings you the hottest Movies and binge-worthy TV Shows from around the world. From explosive action to heartwarming drama, there's something here for every mood. Stay tuned and never miss a moment of entertainment!</p>
+  </div>
+
+  <!-- Bottom Ad Position -->
+  <div class="ad-container">
+    <script type='text/javascript' src='//pl26640661.profitableratecpm.com/32/da/24/32da24bbb349b1c40dc2190cabe48290.js'></script>
+  </div>
+
+  <!-- Video Modal -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="modalVideo" class="modal-video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <button class="next-video-btn" onclick="playNextVideo()">Next Video ▶</button>
+      <div id="currentVideoTitle" style="color: var(--secondary-color); margin-top: 10px; font-weight: bold;"></div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Make a request:</strong><br>
+    Is there a movie or TV show you want to watch on our website?<br>
+    Let us know by leaving a comment or sending a DM:<br>
+    <strong>IG:</strong> @tvyami_sa<br>
+    <strong>TikTok:</strong> @tvyami2<br><br>
+
+    <strong>Are you a business owner?</strong><br>
+    Advertise with us to reach more people. Send us a DM:<br>
+    <strong>IG:</strong> @tvyami_sa<br>
+    <strong>TikTok:</strong> @tvyami2<br><br>
+
+    © 2025 TV Yami
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.setAttribute('data-theme', 
+        document.body.getAttribute('data-theme') === 'light' ? '' : 'light');
+    });
+
+    // Content database for search
+    const contentDatabase = [
+      { title: "A United Kingdom", year: "2017", url: "https://drive.google.com/file/d/1aXNXRaS0bn5V2_wL-IRUoQM8MY_QiAWK/preview", type: "movie" },
+      { title: "Air", year: "2023", url: "https://drive.google.com/file/d/1nrvPvVYbPFOnM6E1US3aQgHtq-PONRHY/preview", type: "movie" },
+      { title: "Killer Body", year: "2023", url: "https://www.youtube.com/embed/ZUG3jxb9bFM?autoplay=1", type: "movie" },
+      { title: "The Perfect Find", year: "2023", url: "https://www.youtube.com/embed/XiImoJwpfJ8?autoplay=1", type: "movie" },
+      { title: "The Tutor", year: "2023", url: "https://www.youtube.com/embed/LOwyDHQzLQs?autoplay=1", type: "movie" },
+      { title: "The Locksmith", year: "2023", url: "https://www.youtube.com/embed/L3dIFNw7XVI?autoplay=1", type: "movie" },
+      { title: "The Ritual Killer", year: "2023", url: "https://www.youtube.com/embed/GrNNglupZPA?autoplay=1", type: "movie" },
+      { title: "Beautiful Disaster", year: "2023", url: "https://www.youtube.com/embed/wkqKnmWbzLw?autoplay=1", type: "movie" },
+      { title: "American Fiction", year: "2023", url: "https://drive.google.com/file/d/1DYLjdSdqLmFj9vlgjJXldQ0aPXskTFyE/preview", type: "movie" },
+      { title: "Amsterdam", year: "2023", url: "https://drive.google.com/file/d/1OXJDBvhdJ6WjwVVelQ16k2prXKxRrQrn/preview", type: "movie" },
+      { title: "Dear Basketball", year: "2017", url: "https://drive.google.com/file/d/1sHWOEhixlQ6Q3cMAQMff8E3TL-Jm9lDk/preview", type: "movie" },
+      { title: "Dangerous Lies", year: "2020", url: "https://drive.google.com/file/d/1KBaW16hSXnKrs6OCHssXK5m1RyD2FE0K/preview", type: "movie" },
+      { title: "Skeem Saam", year: "2023", url: "https://tvyami.blogspot.com/search/label/skeemsaam", type: "series" },
+      { title: "Ithonga", year: "2023", url: "https://tvyami.blogspot.com/search/label/ithonga", type: "series" },
+      { title: "Genesis", year: "2023", url: "https://tvyami.blogspot.com/search/label/genesis", type: "series" },
+      { title: "Xrepo", year: "2023", url: "https://tvyami.blogspot.com/search/label/xrepo", type: "series" }
+    ];
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      searchResults.innerHTML = '';
+      
+      if (query.length < 2) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      const results = contentDatabase.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.year.includes(query) ||
+        item.type.includes(query)
+      );
+      
+      if (results.length > 0) {
+        results.forEach(item => {
+          const resultItem = document.createElement('div');
+          resultItem.className = 'search-result-item';
+          resultItem.innerHTML = `
+            <strong>${item.title}</strong> (${item.year}) - ${item.type}
+          `;
+          resultItem.addEventListener('click', () => {
+            if (item.url.includes('youtube.com') || item.url.includes('drive.google.com')) {
+              openModal(item.url, `${item.title} (${item.year})`);
+            } else {
+              window.open(item.url, '_blank');
+            }
+            searchResults.style.display = 'none';
+            searchInput.value = '';
+          });
+          searchResults.appendChild(resultItem);
+        });
+        searchResults.style.display = 'block';
+      } else {
+        const noResults = document.createElement('div');
+        noResults.className = 'search-result-item';
+        noResults.textContent = 'No results found';
+        searchResults.appendChild(noResults);
+        searchResults.style.display = 'block';
+      }
+    });
+
+    // Close search results when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+
+    // Modal functions
+    let currentVideoIndex = 0;
+    const videoUrls = contentDatabase.filter(item => 
+      item.url.includes('youtube.com') || item.url.includes('drive.google.com')
+    ).map(item => ({
+      url: item.url,
+      title: `${item.title} (${item.year})`
+    }));
+
+    function openModal(videoUrl, videoTitle = '') {
+      const modal = document.getElementById('videoModal');
+      const modalVideo = document.getElementById('modalVideo');
+      const videoTitleElement = document.getElementById('currentVideoTitle');
+      
+      currentVideoIndex = videoUrls.findIndex(item => item.url === videoUrl);
+      modalVideo.src = videoUrl;
+      videoTitleElement.textContent = videoTitle;
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+
+    function playNextVideo() {
+      currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
+      const nextVideo = videoUrls[currentVideoIndex];
+      document.getElementById('modalVideo').src = nextVideo.url;
+      document.getElementById('currentVideoTitle').textContent = nextVideo.title;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('videoModal');
+      const modalVideo = document.getElementById('modalVideo');
+      modalVideo.src = "";
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('videoModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+
+    // Carousel functionality
+    let currentCarouselIndex = 0;
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const carouselInner = document.querySelector('.carousel-inner');
+
+    function moveCarousel(direction) {
+      currentCarouselIndex += direction;
+      
+      if (currentCarouselIndex < 0) {
+        currentCarouselIndex = carouselItems.length - 1;
+      } else if (currentCarouselIndex >= carouselItems.length) {
+        currentCarouselIndex = 0;
+      }
+      
+      carouselInner.style.transform = `translateX(-${currentCarouselIndex * 100}%)`;
+    }
+
+    // Auto-rotate carousel
+    setInterval(() => {
+      moveCarousel(1);
+    }, 5000);
+
+    // Make search work on Enter key
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const query = this.value.toLowerCase();
+        if (query.length > 0) {
+          const results = contentDatabase.filter(item => 
+            item.title.toLowerCase().includes(query) || 
+            item.year.includes(query) ||
+            item.type.includes(query)
+          );
+          
+          if (results.length > 0) {
+            if (results[0].url.includes('youtube.com') || results[0].url.includes('drive.google.com')) {
+              openModal(results[0].url, `${results[0].title} (${results[0].year})`);
+            } else {
+              window.open(results[0].url, '_blank');
+            }
+          }
+          searchResults.style.display = 'none';
+        }
+      }
+    });
+
+    // Ad fallback handling
+    window.addEventListener('load', function() {
+      const adContainers = document.querySelectorAll('.ad-container');
+      adContainers.forEach(container => {
+        const iframes = container.getElementsByTagName('iframe');
+        if (iframes.length === 0) {
+          const fallback = container.querySelector('.ad-fallback');
+          if (fallback) fallback.style.display = 'block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
