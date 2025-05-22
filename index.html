@@ -1,88 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' ry='20' fill='black'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='white'>📺</text></svg>">
+ <!-- Sticky Header (Compact) -->
+<header class="site-header">
+  <div class="logo-small">
+    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' ry='20' fill='black'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='white'>📺</text></svg>" 
+         alt="TV Yami" class="logo-img">
+    <span>TV Yami</span>
+  </div>
+</header>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <meta name="description" content="TV Yami offers free streaming of South African, American TV Shows, and Movies. Watch anytime, anywhere." />
-  <meta name="keywords" content="TV Yami, South African TV, Skeem Saam, Ithonga, Genesis, Xrepo, Movies, Free Streaming, American TV Shows" />
-  <meta name="google-site-verification" content="SxXcwQdqUlWLjt456JwV8YfWjovUXvFl_CIgtUGweD0" />
-  <title>TV Yami – Free SA & US TV Shows + Movies</title>
-
-  <!-- Ads with proper async loading to prevent blocking -->
-  <script async src='//pl26630947.profitableratecpm.com/91/50/ce/9150ce4b254464961b06ccaa256200ea.js'></script>
-  <script async src='//pl26640661.profitableratecpm.com/32/da/24/32da24bbb349b1c40dc2190cabe48290.js'></script>
-
+<!-- Keep your existing theme toggle button -->
+<button class="theme-toggle" id="themeToggle">🌓</button>
+  
   <style>
-    :root {
-      --primary-color: #FF4500;
-      --secondary-color: #FFD700;
-      --bg-color: #000;
-      --text-color: #fff;
-      --card-bg: #111;
-      --modal-bg: rgba(0, 0, 0, 0.9);
-    }
+ .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-color);
+  padding: 8px 15px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  height: 50px; /* Fixed height */
+}
 
-    [data-theme="light"] {
-      --primary-color: #E74C3C;
-      --secondary-color: #F39C12;
-      --bg-color: #f5f5f5;
-      --text-color: #333;
-      --card-bg: #fff;
-      --modal-bg: rgba(255, 255, 255, 0.95);
-    }
+.logo-small {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.logo-img {
+  width: 30px; /* Smaller logo */
+  height: 30px;
+}
+
+.logo-small span {
+  font-size: 20px;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+/* Push content down below header */
+body {
+  padding-top: 60px !important;
+}
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      padding-top: 150px; /* Added for sticky header */
+      padding: 30px 15px;
       text-align: center;
       transition: all 0.3s ease;
-    }
-
-    /* Sticky Header */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: var(--bg-color);
-      z-index: 1000;
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
-    }
-
-    .header-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .logo-img {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    .logo-text {
-      font-size: 28px;
-      font-weight: bold;
-      color: var(--secondary-color);
-      text-shadow: 2px 2px 5px #000;
     }
 
     h1 {
@@ -310,6 +282,12 @@
       text-decoration: underline;
     }
 
+    @media (min-width: 768px) {
+      .links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
     /* Thumbnail styles */
     .thumbnail-container {
       position: relative;
@@ -329,7 +307,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background: #222; /* Fallback for broken images */
     }
     
     .play-button {
@@ -478,7 +455,6 @@
       border-radius: 8px;
       object-fit: cover;
       border: 2px solid #444;
-      background: #222; /* Fallback for broken images */
     }
     
     .preview-title {
@@ -531,7 +507,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Ad container styling - Improved for mobile */
+    /* Ad container styling */
     .ad-container {
       margin: 20px 0;
       min-height: 90px;
@@ -541,183 +517,11 @@
       background: rgba(255,255,255,0.05);
       border-radius: 5px;
       padding: 10px;
-      overflow: hidden;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* Series/Seasons styles */
-    .series-container {
-      display: none;
-      max-width: 1000px;
-      margin: 30px auto;
-    }
-
-    .series-item {
-      background: var(--card-bg);
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      border-left: 4px solid var(--primary-color);
-    }
-
-    .series-title {
-      font-size: 20px;
-      color: var(--secondary-color);
-      margin-bottom: 10px;
-    }
-
-    .season-container {
-      display: none;
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    .season-item {
-      background: rgba(255,255,255,0.05);
-      padding: 10px;
-      margin-bottom: 8px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .episode-list {
-      display: none;
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    .episode-item {
-      display: flex;
-      align-items: center;
-      padding: 8px;
-      margin-bottom: 5px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .episode-item:hover {
-      background: rgba(255,69,0,0.2);
-    }
-
-    .episode-play {
-      margin-right: 10px;
-      color: var(--primary-color);
-    }
-
-    /* ALL Videos section */
-    .all-videos-container {
-      display: none;
-      max-width: 1000px;
-      margin: 30px auto;
-    }
-
-    .all-videos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .all-video-item {
-      cursor: pointer;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 130px;
-      }
-      
-      .header-content {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 15px;
-      }
-      
-      .logo-container {
-        margin-bottom: 0;
-      }
-      
-      .logo-text {
-        font-size: 24px;
-      }
-      
-      h1 {
-        font-size: 36px;
-      }
-      
-      .categories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      .category, .subcategory {
-        white-space: nowrap;
-      }
-      
-      .video-container {
-        flex: 1 1 100%;
-      }
-      
-      .thumbnail-container {
-        height: 200px;
-      }
-      
-      .modal-video {
-        height: 300px;
-      }
-      
-      .preview-item {
-        width: 140px;
-      }
-      
-      .preview-thumbnail {
-        height: 200px;
-      }
-      
-      .ad-container {
-        min-height: 50px;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .links {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Header -->
-  <header class="site-header">
-    <div class="header-content">
-      <div class="logo-container">
-        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' ry='20' fill='black'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='white'>📺</text></svg>" alt="TV Yami Logo" class="logo-img">
-        <div class="logo-text">TV Yami</div>
-      </div>
-      
-      <!-- Main Menu -->
-      <div class="categories">
-        <a class="category" href="https://tvyami.blogspot.com/search/label/movies?&max-results=6" target="_blank">Movies</a>
-        <a class="category" href="https://mzansimovie.blogspot.com/search/label/SERIES?&max-results=6" target="_blank">Series</a>
-        <a class="category" href="https://tvyami.blogspot.com/search/label/South%20African%20TV%20Shows?&max-results=6" target="_blank">SA TV Shows</a>
-        <a class="category" id="allVideosBtn">ALL Videos</a>
-        <a class="category" id="seriesBtn">Series Library</a>
-        <a class="subcategory" href="https://tvyami.blogspot.com/search/label/xrepo?&max-results=6" target="_blank">Xrepo</a>
-        <a class="subcategory" href="https://tvyami.blogspot.com/search/label/skeemsaam?&max-results=6" target="_blank">Skeem Saam</a>
-        <a class="subcategory" href="https://tvyami.blogspot.com/search/label/ithonga?&max-results=6" target="_blank">Ithonga</a>
-        <a class="subcategory" href="https://tvyami.blogspot.com/search/label/genesis?&max-results=6" target="_blank">Genesis</a>
-        <a class="category" href="https://tvyami.blogspot.com/search/label/American%20TV%20Shows?&max-results=6" target="_blank">US TV Shows</a>
-        <a class="category" href="https://tvyami.blogspot.com/search/label/Documentaries?&max-results=6" target="_blank">Documentaries</a>
-        <a class="category" href="https://tvyami.blogspot.com/search/label/Comedy?&max-results=6" target="_blank">Comedy</a>
-      </div>
-    </div>
-  </header>
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="themeToggle">🌓</button>
 
@@ -739,56 +543,36 @@
     <div class="search-results" id="searchResults"></div>
   </div>
 
+  <div class="categories">
+    <a class="category" href="https://tvyami.blogspot.com/search/label/movies?&max-results=6" target="_blank">Movies</a>
+    <a class="category" href="https://mzansimovie.blogspot.com/search/label/SERIES?&max-results=6" target="_blank">Series</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/South%20African%20TV%20Shows?&max-results=6" target="_blank">South African TV Shows</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/xrepo?&max-results=6" target="_blank">Xrepo</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/skeemsaam?&max-results=6" target="_blank">Skeem Saam</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/ithonga?&max-results=6" target="_blank">Ithonga</a>
+    <a class="subcategory" href="https://tvyami.blogspot.com/search/label/genesis?&max-results=6" target="_blank">Genesis</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/American%20TV%20Shows?&max-results=6" target="_blank">American TV Shows</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/Documentaries?&max-results=6" target="_blank">Documentaries</a>
+    <a class="category" href="https://tvyami.blogspot.com/search/label/Comedy?&max-results=6" target="_blank">Comedy</a>
+  </div>
+
   <button class="watch-now" onclick="window.open('https://tvyami.blogspot.com/', '_blank')">🎬 Watch Now</button>
 
-  <!-- ALL Videos Section -->
-  <div class="section all-videos-container" id="allVideosSection">
-    <h2>ALL Videos (A-Z)</h2>
-    <div class="all-videos-grid" id="allVideosGrid">
-      <!-- Populated by JavaScript -->
-    </div>
-  </div>
-
-  <!-- Series/Seasons Section -->
-  <div class="section series-container" id="seriesSection">
-    <h2>Series Library</h2>
-    <div class="series-item" data-series="stranger-things">
-      <div class="series-title">Stranger Things</div>
-      <div class="season-container" id="stranger-things-seasons">
-        <div class="season-item" data-season="1">Season 1</div>
-        <div class="episode-list" id="stranger-things-season1">
-          <div class="episode-item" onclick="openModal('https://www.youtube.com/embed/b9EkMc79ZSU?autoplay=1', 'Stranger Things S1E1')">
-            <span class="episode-play">▶</span> Episode 1: The Vanishing of Will Byers
-          </div>
-          <div class="episode-item" onclick="openModal('https://www.youtube.com/embed/b9EkMc79ZSU?autoplay=1', 'Stranger Things S1E2')">
-            <span class="episode-play">▶</span> Episode 2: The Weirdo on Maple Street
-          </div>
-        </div>
-        <div class="season-item" data-season="2">Season 2</div>
-        <div class="episode-list" id="stranger-things-season2">
-          <div class="episode-item" onclick="openModal('https://www.youtube.com/embed/b9EkMc79ZSU?autoplay=1', 'Stranger Things S2E1')">
-            <span class="episode-play">▶</span> Episode 1: MADMAX
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Google Drive Videos Section -->
+  <!-- Google Drive Videos Section (Now First) -->
   <div class="section">
     <h2>Featured Movies</h2>
     <div class="video-section">
       <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1aXNXRaS0bn5V2_wL-IRUoQM8MY_QiAWK/preview', 'A United Kingdom (2017)')">
         <div class="video-title">A United Kingdom (2017)</div>
         <div class="thumbnail-container">
-          <img src="https://m.media-amazon.com/images/M/MV5BMTQ2NjE4NDE2NV5BMl5BanBnXkFtZTgwOTcwNDk5MTI@._V1_FMjpg_UX1000_.jpg" alt="A United Kingdom thumbnail" onerror="this.src='https://via.placeholder.com/300x450?text=No+Thumbnail'">
+          <img src="https://m.media-amazon.com/images/M/MV5BMTQ2NjE4NDE2NV5BMl5BanBnXkFtZTgwOTcwNDk5MTI@._V1_FMjpg_UX1000_.jpg" alt="A United Kingdom thumbnail">
           <div class="play-button"></div>
         </div>
       </div>
       <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1nrvPvVYbPFOnM6E1US3aQgHtq-PONRHY/preview', 'Air (2023)')">
         <div class="video-title">Air (2023)</div>
         <div class="thumbnail-container">
-          <img src="https://m.media-amazon.com/images/M/MV5BOWE1YzQ4YTAtODJlYS00YzJkLTk5NjktOWIyYzFkMjYzMjE2XkEyXkFqcGdeQXVyMTUzOTcyODA5._V1_FMjpg_UX1000_.jpg" alt="Air thumbnail" onerror="this.src='https://via.placeholder.com/300x450?text=No+Thumbnail'">
+          <img src="https://m.media-amazon.com/images/M/MV5BOWE1YzQ4YTAtODJlYS00YzJkLTk5NjktOWIyYzFkMjYzMjE2XkEyXkFqcGdeQXVyMTUzOTcyODA5._V1_FMjpg_UX1000_.jpg" alt="Air thumbnail">
           <div class="play-button"></div>
         </div>
       </div>
@@ -802,7 +586,8 @@
       <div id="container-9fe4ec7851720a430fcc8b0183179c46"></div>
     </div>
   </div>
-    <!-- YouTube Videos Carousel -->
+
+   <!-- YouTube Videos Carousel -->
   <div class="section">
     <h2>Popular Videos</h2>
     <div class="carousel">
@@ -812,7 +597,7 @@
           <div class="video-container" onclick="openModal('https://www.youtube.com/embed/ZUG3jxb9bFM?autoplay=1')">
             <div class="video-title">Big Fish & Begonia (2016) Full Movie</div>
             <div class="thumbnail-container">
-              <img src="https://i.ytimg.com/vi/ZUG3jxb9bFM/maxresdefault.jpg" alt="Killer Body thumbnail" onerror="this.src='https://via.placeholder.com/300x450?text=No+Thumbnail'">
+              <img src="https://i.ytimg.com/vi/ZUG3jxb9bFM/maxresdefault.jpg" alt="Killer Body thumbnail">
               <div class="play-button"></div>
             </div>
           </div>
@@ -821,7 +606,43 @@
           <div class="video-container" onclick="openModal('https://www.youtube.com/embed/XiImoJwpfJ8?autoplay=1')">
             <div class="video-title">The Great Santini (1979) Full Movie</div>
             <div class="thumbnail-container">
-              <img src="https://i.ytimg.com/vi/XiImoJwpfJ8/maxresdefault.jpg" alt="The Perfect Find thumbnail" onerror="this.src='https://via.placeholder.com/300x450?text=No+Thumbnail'">
+              <img src="https://i.ytimg.com/vi/XiImoJwpfJ8/maxresdefault.jpg" alt="The Perfect Find thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/LOwyDHQzLQs?autoplay=1')">
+            <div class="video-title">The Devils Female (1974) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/LOwyDHQzLQs/maxresdefault.jpg" alt="The Tutor thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/L3dIFNw7XVI?autoplay=1')">
+            <div class="video-title">Parallel (2024) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/L3dIFNw7XVI/maxresdefault.jpg" alt="The Locksmith thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/GrNNglupZPA?autoplay=1')">
+            <div class="video-title">Claudine (1974) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/GrNNglupZPA/maxresdefault.jpg" alt="The Ritual Killer thumbnail">
+              <div class="play-button"></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-container" onclick="openModal('https://www.youtube.com/embed/wkqKnmWbzLw?autoplay=1')">
+            <div class="video-title">Robbin (2024) Full Movie</div>
+            <div class="thumbnail-container">
+              <img src="https://i.ytimg.com/vi/wkqKnmWbzLw/maxresdefault.jpg" alt="Beautiful Disaster thumbnail">
               <div class="play-button"></div>
             </div>
           </div>
@@ -838,7 +659,14 @@
       <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1DYLjdSdqLmFj9vlgjJXldQ0aPXskTFyE/preview', 'American Fiction (2023)')">
         <div class="video-title">American Fiction (2023)</div>
         <div class="thumbnail-container">
-          <img src="https://m.media-amazon.com/images/M/MV5BZjNlNGU0NjAtNjM5NC00ZmY3LWE3NTItYjE0YzQyMGM2OTNhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg" alt="American Fiction thumbnail" onerror="this.src='https://via.placeholder.com/300x450?text=No+Thumbnail'">
+          <img src="https://m.media-amazon.com/images/M/MV5BZjNlNGU0NjAtNjM5NC00ZmY3LWE3NTItYjE0YzQyMGM2OTNhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000_.jpg" alt="American Fiction thumbnail">
+          <div class="play-button"></div>
+        </div>
+      </div>
+      <div class="video-container" onclick="openModal('https://drive.google.com/file/d/1OXJDBvhdJ6WjwVVelQ16k2prXKxRrQrn/preview', 'Amsterdam (2023)')">
+        <div class="video-title">Amsterdam (2023)</div>
+        <div class="thumbnail-container">
+          <img src="https://m.media-amazon.com/images/M/MV5BNDQwNzE0ZTItYmZjMC00NjI3LWFlNzctNTExZDY2NWE0Zjc0XkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_FMjpg_UX1000_.jpg" alt="Amsterdam thumbnail">
           <div class="play-button"></div>
         </div>
       </div>
@@ -850,8 +678,20 @@
     <h2>New Releases</h2>
     <div class="content-preview">
       <div class="preview-item" onclick="openModal('https://drive.google.com/file/d/1sHWOEhixlQ6Q3cMAQMff8E3TL-Jm9lDk/preview', 'Dear Basketball')">
-        <img src="https://m.media-amazon.com/images/M/MV5BMTU1NzY5NTY0MV5BMl5BanBnXkFtZTgwMjM2NzM5NDM@._V1_FMjpg_UX1000_.jpg" class="preview-thumbnail" alt="Dear Basketball" onerror="this.src='https://via.placeholder.com/300x450?text=No+Thumbnail'">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTU1NzY5NTY0MV5BMl5BanBnXkFtZTgwMjM2NzM5NDM@._V1_FMjpg_UX1000_.jpg" class="preview-thumbnail" alt="Dear Basketball">
         <div class="preview-title">Dear Basketball</div>
+      </div>
+      <div class="preview-item" onclick="openModal('https://drive.google.com/file/d/1KBaW16hSXnKrs6OCHssXK5m1RyD2FE0K/preview', 'Dangerous Lies')">
+        <img src="https://m.media-amazon.com/images/M/MV5BNzU0YjI0OGItYTlkYi00YTE5LTk4NWMtM2I3NDQ1YzQyYzI2XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg" class="preview-thumbnail" alt="Dangerous Lies">
+        <div class="preview-title">Dangerous Lies</div>
+      </div>
+      <div class="preview-item" onclick="openModal('https://www.youtube.com/embed/ZUG3jxb9bFM?autoplay=1', 'Killer Body')">
+        <img src="https://i.ytimg.com/vi/ZUG3jxb9bFM/maxresdefault.jpg" class="preview-thumbnail" alt="Killer Body">
+        <div class="preview-title">Killer Body</div>
+      </div>
+      <div class="preview-item" onclick="openModal('https://www.youtube.com/embed/XiImoJwpfJ8?autoplay=1', 'The Perfect Find')">
+        <img src="https://i.ytimg.com/vi/XiImoJwpfJ8/maxresdefault.jpg" class="preview-thumbnail" alt="The Perfect Find">
+        <div class="preview-title">The Perfect Find</div>
       </div>
     </div>
   </div>
@@ -1071,61 +911,6 @@
           const fallback = container.querySelector('.ad-fallback');
           if (fallback) fallback.style.display = 'block';
         }
-      });
-    });
-
-    // ALL Videos Section
-    document.getElementById('allVideosBtn').addEventListener('click', function() {
-      document.getElementById('allVideosSection').style.display = 'block';
-      document.getElementById('seriesSection').style.display = 'none';
-      
-      const grid = document.getElementById('allVideosGrid');
-      grid.innerHTML = '';
-      
-      // Sort alphabetically
-      const sortedVideos = [...contentDatabase].sort((a, b) => 
-        a.title.localeCompare(b.title)
-      );
-      
-      sortedVideos.forEach(item => {
-        const videoItem = document.createElement('div');
-        videoItem.className = 'all-video-item';
-        videoItem.innerHTML = `
-          <div class="preview-item" onclick="${item.url.includes('youtube.com') || item.url.includes('drive.google.com') ? 
-            `openModal('${item.url}', '${item.title} (${item.year})')` : 
-            `window.open('${item.url}', '_blank')`}">
-            <img src="${item.url.includes('youtube.com') ? 
-              `https://i.ytimg.com/vi/${item.url.split('/embed/')[1].split('?')[0]}/maxresdefault.jpg` : 
-              'https://via.placeholder.com/150x225?text=No+Thumbnail'}" 
-              class="preview-thumbnail" alt="${item.title}" onerror="this.src='https://via.placeholder.com/150x225?text=No+Thumbnail'">
-            <div class="preview-title">${item.title} (${item.year})</div>
-          </div>
-        `;
-        grid.appendChild(videoItem);
-      });
-    });
-
-    // Series Library Section
-    document.getElementById('seriesBtn').addEventListener('click', function() {
-      document.getElementById('seriesSection').style.display = 'block';
-      document.getElementById('allVideosSection').style.display = 'none';
-    });
-
-    // Series/Seasons toggle functionality
-    document.querySelectorAll('.series-item').forEach(series => {
-      series.addEventListener('click', function(e) {
-        if (!e.target.classList.contains('season-item') && !e.target.classList.contains('episode-item')) {
-          const seasons = this.querySelector('.season-container');
-          seasons.style.display = seasons.style.display === 'block' ? 'none' : 'block';
-        }
-      });
-    });
-
-    document.querySelectorAll('.season-item').forEach(season => {
-      season.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const episodes = this.nextElementSibling;
-        episodes.style.display = episodes.style.display === 'block' ? 'none' : 'block';
       });
     });
   </script>
